@@ -1,6 +1,6 @@
 import { getDatabase } from "@/lib/db";
 import { buildBulkCertificatesHtml, CertificateProject } from "@/lib/certificate";
-import puppeteer from "puppeteer";
+import { launchBrowser } from "@/lib/puppeteer";
 
 export async function POST(request: Request) {
   const body = await request.json();
@@ -22,10 +22,7 @@ export async function POST(request: Request) {
   }
 
   try {
-    const browser = await puppeteer.launch({
-      headless: true,
-      args: ["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"]
-    });
+    const browser = await launchBrowser();
     const page = await browser.newPage();
     const html = buildBulkCertificatesHtml(projects);
 

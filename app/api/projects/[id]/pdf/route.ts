@@ -1,6 +1,6 @@
 import { getDatabase } from "@/lib/db";
 import { buildCertificateHtml } from "@/lib/certificate";
-import puppeteer from "puppeteer";
+import { launchBrowser } from "@/lib/puppeteer";
 
 export async function GET(request: Request, { params }: { params: { id: string } }) {
   const projectId = Number(params.id);
@@ -17,10 +17,7 @@ export async function GET(request: Request, { params }: { params: { id: string }
   }
 
   try {
-    const browser = await puppeteer.launch({
-      headless: true,
-      args: ["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"]
-    });
+    const browser = await launchBrowser();
     const page = await browser.newPage();
     const html = buildCertificateHtml(project);
 
