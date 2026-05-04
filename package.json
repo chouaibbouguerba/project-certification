@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "postinstall": "npx puppeteer install chrome || true"
+    "postinstall": "npx puppeteer browsers install chrome"
   },
   "dependencies": {
     "next": "14.2.5",
