@@ -18,7 +18,7 @@ export async function GET(request: Request, { params }: { params: { id: string }
 
   try {
     const browser = await puppeteer.launch({
-      headless: true,
+      headless: "new",
       args: ["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"]
     });
     const page = await browser.newPage();
@@ -27,6 +27,7 @@ export async function GET(request: Request, { params }: { params: { id: string }
     await page.setContent(html, { waitUntil: ["networkidle0"] });
     const pdfBuffer = Buffer.from(await page.pdf({ format: "A4", printBackground: true, margin: { top: 32, right: 32, bottom: 32, left: 32 } }));
     await browser.close();
+
     const pdfArrayBuffer = pdfBuffer.buffer.slice(pdfBuffer.byteOffset, pdfBuffer.byteOffset + pdfBuffer.byteLength) as ArrayBuffer;
 
     return new Response(pdfArrayBuffer, {

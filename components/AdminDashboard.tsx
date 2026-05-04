@@ -46,7 +46,7 @@ export default function AdminDashboard() {
     setGeneratingPDFs(true);
     try {
       const selectedIds = Array.from(selectedProjects);
-      const response = await fetch("/api/projects/pdf-selected", {
+      const response = await fetch("/api/projects/pdf/selected", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ projectIds: selectedIds })
@@ -185,7 +185,7 @@ export default function AdminDashboard() {
                 <td className="px-4 py-4 text-sm text-slate-700 space-y-2">
                   <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
                     <a
-                      href={`/api/projects/${project.id}/pdf`}
+                      href={`/api/projects/pdf/${project.id}`}
                       target="_blank"
                       rel="noreferrer"
                       className="inline-flex items-center rounded-2xl bg-sky-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-sky-700"
