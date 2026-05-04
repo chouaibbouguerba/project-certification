@@ -110,12 +110,7 @@ export default function AdminDashboard() {
           <p className="text-sm text-slate-500">إجمالي الطلبات: {projects.length}</p>
         </div>
         <div className="flex flex-wrap gap-3">
-          <a
-            href="/api/projects/csv"
-            className="rounded-2xl bg-slate-900 px-4 py-3 text-sm font-medium text-white transition hover:bg-slate-700"
-          >
-            تصدير CSV
-          </a>
+          
           <button
             type="button"
             disabled={generatingPDFs || selectedProjects.size === 0}
