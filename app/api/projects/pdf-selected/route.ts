@@ -44,13 +44,4 @@ export async function POST(request: Request) {
   } catch (error) {
     return new Response(JSON.stringify({ error: String(error) }), { status: 500, headers: { "Content-Type": "application/json" } });
   }
-
-  const pdfArrayBuffer = pdfBuffer.buffer.slice(pdfBuffer.byteOffset, pdfBuffer.byteOffset + pdfBuffer.byteLength) as ArrayBuffer;
-
-  return new Response(pdfArrayBuffer, {
-    headers: {
-      "Content-Type": "application/pdf",
-      "Content-Disposition": `attachment; filename="certificates-selected.pdf"`
-    }
-  });
 }
